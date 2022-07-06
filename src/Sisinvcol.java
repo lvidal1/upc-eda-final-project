@@ -13,9 +13,7 @@ public class Sisinvcol {
     public static final String TIPO_LAPTOP = "Laptop";
     public static final String TIPO_TABLET = "Tablet";
     public static final String TIPO_IMPRESORA = "Impresora";
-
     public static final String ESTADO_DISPONIBLE = "Disponible";
-
     public static final String ESTADO_REPARACION = "En reparacion";
 
     public static void main(String[] args) {
@@ -85,7 +83,6 @@ public class Sisinvcol {
     }
 
     public static void registrarNuevoComponente(List<List<String>> inventario){
-
         List<String> componente = ingresarDatosNuevoComponente();
         inventario.add(componente);
         System.out.println("Componente registrado correctamente");
@@ -141,7 +138,7 @@ public class Sisinvcol {
         Long cantidadDisponible = data.stream().filter(fila -> fila.get(3).equals(ESTADO_DISPONIBLE)).count();
         Long cantidadEnReparacion = data.stream().filter(fila -> fila.get(3).equals(ESTADO_REPARACION)).count();
 
-        // Informacion sobre estado
+        // Informacion sobre componentes en reparacion
         List<List<String>> componentesEnReparacion = data.stream().filter(fila -> fila.get(3).equals(ESTADO_REPARACION)).collect(Collectors.toList());
 
         System.out.println("CANTIDAD DE COMPONENTES:");
@@ -194,7 +191,6 @@ public class Sisinvcol {
     }
 
     public static void listarTiposComponentes(){
-
         List<String> tipos = obtenerTiposComponentes();
 
         System.out.println(crearLineaHorizontal(80));
@@ -216,7 +212,6 @@ public class Sisinvcol {
     }
 
     public static List<List<String>> leerArchivo(String nombreArchivo){
-
         List<List<String>> dataset = new LinkedList <>();
 
         String fila;

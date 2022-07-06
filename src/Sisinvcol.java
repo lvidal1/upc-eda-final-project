@@ -9,8 +9,23 @@ public class Sisinvcol {
 
         List<List<String>> data = leerData();
 
+        mostrarInventario(data);
     }
-    
+
+    public static void mostrarInventario(List<List<String>> data){
+        System.out.printf("| %16s | %30s | %20s |\n", "CODIGO","DESCRIPCION","TIPO");
+        for (int i = 0; i < 80; i++) {
+            System.out.print("-");
+        }
+
+        System.out.println("");
+
+        for (List<String> fila : data) {
+            System.out.printf("| %16s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
+            System.out.println("");
+        }
+    }
+
     public static List<List<String>> leerData(){
 
         List<List<String>> dataset = new LinkedList <>();

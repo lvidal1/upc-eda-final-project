@@ -11,9 +11,9 @@ public class Sisinvcol {
 
     public static void main(String[] args) {
 
-        List<List<String>> data = leerData();
+        List<List<String>> inventario = leerData("inventario.csv");
 
-        mostrarInventario(data);
+        mostrarInventario(inventario);
 
         mostrarTiposComponentes();
     }
@@ -59,29 +59,31 @@ public class Sisinvcol {
         return tipos;
     }
 
-    public static List<List<String>> leerData(){
+    public static List<List<String>> leerData(String nombreArchivo){
 
         List<List<String>> dataset = new LinkedList <>();
 
-        String fila = "";
+        String fila;
         String delimitador = ",";
 
         try {
             // Crear lector de archivo
-            InputStream inputStream = Sisinvcol.class.getClassLoader().getResourceAsStream("data.csv");
-            BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream ));
+            BufferedReader lector = crearLectorArchivo(nombreArchivo);
 
             // Iterar cada fila del archivo .CSV
             while ( (fila = lector.readLine()) != null) {
+
+                // Obtener valores de celda de la fila temporalmente
                 String[] detallesFila = fila.split(delimitador);
+
+                // Crear nueva fila para alojar valores
                 List<String> nuevaFila = new LinkedList<>();
 
-                // Código
-                nuevaFila.add(detallesFila[0]);
-                // Descripción
-                nuevaFila.add(detallesFila[1]);
-                // Tipo
-                nuevaFila.add(detallesFila[2]);
+                // Agregar cada celda encontrada a la nueva fila
+                for (int i = 0; i < detallesFila.length; i++) {
+                    nuevaFila.add(detallesFila[i]);
+                }
+
                 // Agregar nueva fila al dataset
                 dataset.add(nuevaFila);
             }
@@ -92,4 +94,10 @@ public class Sisinvcol {
 
         return dataset;
     }
+
+    public static BufferedReader crearLectorArchivo(String nombreArchivo){
+        InputStream inputStream = Sisinvcol.class.getClassLoader().getResourceAsStream(nombreArchivo);
+        return new BufferedReader(new InputStreamReader(inputStream));
+    }
+
 }

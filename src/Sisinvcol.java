@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Sisinvcol {
@@ -15,7 +16,7 @@ public class Sisinvcol {
 
     public static final String ESTADO_DISPONIBLE = "Disponible";
 
-    public static final String ESTADO_REPARACION = "En reparación";
+    public static final String ESTADO_REPARACION = "En reparacion";
 
     public static void main(String[] args) {
 
@@ -131,9 +132,17 @@ public class Sisinvcol {
     }
 
     public static void listarDetalleInventario(List<List<String>> data){
+        // Informacion sobre cantidades
         Long cantidadImpresora = data.stream().filter(fila -> fila.get(2).equals(TIPO_IMPRESORA)).count();
         Long cantidadLaptop = data.stream().filter(fila -> fila.get(2).equals(TIPO_LAPTOP)).count();
         Long cantidadTablet = data.stream().filter(fila -> fila.get(2).equals(TIPO_TABLET)).count();
+
+        // Informacion sobre estado
+        Long cantidadDisponible = data.stream().filter(fila -> fila.get(3).equals(ESTADO_DISPONIBLE)).count();
+        Long cantidadEnReparacion = data.stream().filter(fila -> fila.get(3).equals(ESTADO_REPARACION)).count();
+
+        // Informacion sobre estado
+        List<List<String>> componentesEnReparacion = data.stream().filter(fila -> fila.get(3).equals(ESTADO_REPARACION)).collect(Collectors.toList());
 
         System.out.println("CANTIDAD DE COMPONENTES:");
 
@@ -141,6 +150,25 @@ public class Sisinvcol {
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "","LAPTOP","TABLET","IMPRESORA");
         System.out.println(crearLineaHorizontal(55));
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "CANT.",cantidadLaptop,cantidadTablet,cantidadImpresora);
+
+        System.out.println("\nESTADO DE COMPONENTES:");
+
+        System.out.println(crearLineaHorizontal(45));
+        System.out.printf("| %10S | %10S | %15S |\n", "","DISPONIBLE","EN REPARACION");
+        System.out.println(crearLineaHorizontal(45));
+        System.out.printf("| %10S | %10S | %15S |\n", "CANT.",cantidadDisponible,cantidadEnReparacion);
+
+        System.out.println("\nCOMPONENTES EN REPARACION:");
+
+        System.out.println(crearLineaHorizontal(47));
+        System.out.printf("| %10S | %30s |\n", "CODIGO","DESCRIPCION");
+        System.out.println(crearLineaHorizontal(47));
+
+        for (List<String> fila : componentesEnReparacion) {
+            System.out.printf("| %10S | %30s |", fila.get(0), fila.get(1));
+            System.out.println("");
+        }
+
     }
 
     public static void listarInventario(List<List<String>> data){

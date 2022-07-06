@@ -16,19 +16,60 @@ public class Sisinvcol {
     public static void main(String[] args) {
 
         List<List<String>> inventario = leerArchivo("inventario.csv");
-
         List<List<String>> personal = leerArchivo("personal.csv");
-/*
-        listarInventario(inventario);
 
-        listarPersonal(personal);
+        System.out.println("###### Sistema Sisinvcol v1.0 ######\n");
 
-        listarTiposComponentes();
+        int opcionMenu;
 
-        listarDetalleInventario(inventario);*/
+        do {
+            opcionMenu = ingresarOpcionMenu();
 
-        registrarNuevoComponente(inventario);
+            if(opcionMenu == 1){
+                listarInventario(inventario);
+            }
+            if(opcionMenu == 2){
+                listarTiposComponentes();
+            }
+            if(opcionMenu == 3){
+                listarPersonal(personal);
+            }
+            if(opcionMenu == 4){
+                registrarNuevoComponente(inventario);
+            }
+            if(opcionMenu == 5){
+                listarDetalleInventario(inventario);
+            }
 
+        } while (opcionMenu != 6);
+
+        System.out.println("\nGracias! Tenga un buen dia.");
+
+    }
+
+    public static int ingresarOpcionMenu(){
+        int opcion = 0, read;
+        Scanner sc = new Scanner(System.in);
+
+        while(opcion == 0){
+            System.out.println("*-------- Menu Principal -------*");
+            System.out.println("1. Listar componentes inventariados");
+            System.out.println("2. Listar tipos de componentes");
+            System.out.println("3. Listar informacion del personal");
+            System.out.println("4. Guardar nuevo componente");
+            System.out.println("5. Mostrar estadisticas");
+            System.out.println("6. Salir");
+
+            System.out.println("Escoja una opcion:");
+            read = sc.nextInt();
+
+            if(read == 1 || read == 2 || read == 3 || read == 4 || read == 5  || read == 6){
+                opcion = read;
+            }else{
+                System.out.println("Elija una opción válida. Intente nuevamente\n");
+            }
+        }
+        return opcion;
     }
 
     public static void registrarNuevoComponente(List<List<String>> inventario){

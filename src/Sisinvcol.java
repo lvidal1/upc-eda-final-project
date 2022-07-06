@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Sisinvcol {
@@ -14,14 +15,64 @@ public class Sisinvcol {
         List<List<String>> inventario = leerArchivo("inventario.csv");
 
         List<List<String>> personal = leerArchivo("personal.csv");
-
+/*
         mostrarInventario(inventario);
 
         mostrarPersonal(personal);
 
         mostrarTiposComponentes();
 
-        mostrarDetalleInventario(inventario);
+        mostrarDetalleInventario(inventario);*/
+
+        registrarNuevoComponente(inventario);
+
+        mostrarInventario(inventario);
+    }
+
+    public static void registrarNuevoComponente(List<List<String>> data){
+
+        List<String> componente = leerNuevoComponente();
+        data.add(componente);
+        System.out.println("Componente registrado correctamente");
+    }
+
+    public static List<String> leerNuevoComponente(){
+        Scanner sc = new Scanner(System.in);
+
+        List<String> componente = new LinkedList<>();
+
+        System.out.println("*---- Tipos de componente disponibles -----*");
+        System.out.println("1. "+ TIPO_LAPTOP);
+        System.out.println("2. "+ TIPO_TABLET);
+        System.out.println("3. "+ TIPO_IMPRESORA);
+        System.out.println("Escoja el tipo: ");
+        int idTipo = sc.nextInt();
+
+        System.out.println("Codigo: ");
+        String codigo = sc.next();
+
+        System.out.println("Descripcion: ");
+        sc.nextLine();
+        String descripcion = sc.nextLine();
+
+        componente.add(codigo);
+        componente.add(descripcion);
+        componente.add(obtenerTipoUsandoId(idTipo));
+
+        return  componente;
+    }
+
+    public static String obtenerTipoUsandoId(int idTipo){
+        switch (idTipo){
+            case 1:
+                return TIPO_LAPTOP;
+            case 2:
+                return TIPO_TABLET;
+            case 3:
+                return TIPO_IMPRESORA;
+            default:
+                return "-";
+        }
     }
 
     public static void mostrarDetalleInventario(List<List<String>> data){

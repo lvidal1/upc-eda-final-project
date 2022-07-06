@@ -29,6 +29,8 @@ public class Sisinvcol {
         Long cantidadLaptop = data.stream().filter(fila -> fila.get(2).equals(TIPO_LAPTOP)).count();
         Long cantidadTablet = data.stream().filter(fila -> fila.get(2).equals(TIPO_TABLET)).count();
 
+        System.out.println("CANTIDAD DE COMPONENTES:\n");
+
         System.out.println(crearLineaHorizontal(55));
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "","LAPTOP","TABLET","IMPRESORA");
         System.out.println(crearLineaHorizontal(55));

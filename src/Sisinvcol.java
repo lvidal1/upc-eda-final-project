@@ -13,21 +13,33 @@ public class Sisinvcol {
 
         List<List<String>> inventario = leerData("inventario.csv");
 
+        List<List<String>> personal = leerData("personal.csv");
+
         mostrarInventario(inventario);
+
+        mostrarPersonal(personal);
 
         mostrarTiposComponentes();
     }
 
     public static void mostrarInventario(List<List<String>> data){
-        System.out.printf("| %16s | %30s | %20s |\n", "CODIGO","DESCRIPCION","TIPO");
-        for (int i = 0; i < 80; i++) {
-            System.out.print("-");
-        }
-
-        System.out.println("");
+        System.out.println(crearLineaHorizontal(80));
+        System.out.printf("| %20s | %30s | %20s |\n", "CODIGO","DESCRIPCION","TIPO");
+        System.out.println(crearLineaHorizontal(80));
 
         for (List<String> fila : data) {
-            System.out.printf("| %16s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
+            System.out.printf("| %20s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
+            System.out.println("");
+        }
+    }
+
+    public static void mostrarPersonal(List<List<String>> data){
+        System.out.println(crearLineaHorizontal(80));
+        System.out.printf("| %20s | %30s | %20s |\n", "NOMBRE","ROL", "USUARIO");
+        System.out.println(crearLineaHorizontal(80));
+
+        for (List<String> fila : data) {
+            System.out.printf("| %20s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
             System.out.println("");
         }
     }
@@ -36,16 +48,12 @@ public class Sisinvcol {
 
         List<String> tipos = obtenerTiposComponentes();
 
-        System.out.printf("| %16s |\n", "TIPO");
-
-        for (int i = 0; i < 30; i++) {
-            System.out.print("-");
-        }
-
-        System.out.println("");
+        System.out.println(crearLineaHorizontal(80));
+        System.out.printf("| %20s |\n", "TIPO");
+        System.out.println(crearLineaHorizontal(30));
 
         for (String tipo : tipos) {
-            System.out.printf("| %16s |", tipo);
+            System.out.printf("| %20s |", tipo);
             System.out.println("");
         }
     }
@@ -98,6 +106,14 @@ public class Sisinvcol {
     public static BufferedReader crearLectorArchivo(String nombreArchivo){
         InputStream inputStream = Sisinvcol.class.getClassLoader().getResourceAsStream(nombreArchivo);
         return new BufferedReader(new InputStreamReader(inputStream));
+    }
+
+    public static String crearLineaHorizontal(int numero){
+        String linea = "";
+        for (int i = 0; i < numero; i++) {
+            linea += "-";
+        }
+        return linea;
     }
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Sisinvcol {
 
-    public static final String TIPO_LAPTOP = "laptop";
-    public static final String TIPO_TABLET = "tablet";
-    public static final String TIPO_IMPRESORA = "impresora";
+    public static final String TIPO_LAPTOP = "Laptop";
+    public static final String TIPO_TABLET = "Tablet";
+    public static final String TIPO_IMPRESORA = "Impresora";
 
     public static void main(String[] args) {
 
@@ -20,6 +20,19 @@ public class Sisinvcol {
         mostrarPersonal(personal);
 
         mostrarTiposComponentes();
+
+        mostrarDetalleInventario(inventario);
+    }
+
+    public static void mostrarDetalleInventario(List<List<String>> data){
+        Long cantidadImpresora = data.stream().filter(fila -> fila.get(2).equals(TIPO_IMPRESORA)).count();
+        Long cantidadLaptop = data.stream().filter(fila -> fila.get(2).equals(TIPO_LAPTOP)).count();
+        Long cantidadTablet = data.stream().filter(fila -> fila.get(2).equals(TIPO_TABLET)).count();
+
+        System.out.println(crearLineaHorizontal(55));
+        System.out.printf("| %10S | %10S | %10S | %10S |\n", "","LAPTOP","TABLET","IMPRESORA");
+        System.out.println(crearLineaHorizontal(55));
+        System.out.printf("| %10S | %10S | %10S | %10S |\n", "CANT.",cantidadLaptop,cantidadTablet,cantidadImpresora);
     }
 
     public static void mostrarInventario(List<List<String>> data){

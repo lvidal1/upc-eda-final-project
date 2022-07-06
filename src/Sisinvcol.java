@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Sisinvcol {
 
+    public static final int ID_LAPTOP = 1;
+    public static final int ID_TABLET = 2;
+    public static final int ID_IMPRESORA = 3;
     public static final String TIPO_LAPTOP = "Laptop";
     public static final String TIPO_TABLET = "Tablet";
     public static final String TIPO_IMPRESORA = "Impresora";
@@ -16,13 +19,13 @@ public class Sisinvcol {
 
         List<List<String>> personal = leerArchivo("personal.csv");
 /*
-        mostrarInventario(inventario);
+        listarInventario(inventario);
 
-        mostrarPersonal(personal);
+        listarPersonal(personal);
 
-        mostrarTiposComponentes();
+        listarTiposComponentes();
 
-        mostrarDetalleInventario(inventario);*/
+        listarDetalleInventario(inventario);*/
 
         registrarNuevoComponente(inventario);
 
@@ -33,7 +36,7 @@ public class Sisinvcol {
         List<String> componente = ingresarDatosNuevoComponente();
         inventario.add(componente);
         System.out.println("Componente registrado correctamente");
-        mostrarInventario(inventario);
+        listarInventario(inventario);
     }
 
     public static List<String> ingresarDatosNuevoComponente(){
@@ -42,9 +45,9 @@ public class Sisinvcol {
         List<String> componente = new LinkedList<>();
 
         System.out.println("*---- Tipos de componente disponibles -----*");
-        System.out.println("1. "+ TIPO_LAPTOP);
-        System.out.println("2. "+ TIPO_TABLET);
-        System.out.println("3. "+ TIPO_IMPRESORA);
+        System.out.println(ID_LAPTOP + ". "+ TIPO_LAPTOP);
+        System.out.println(ID_TABLET + ". "+ TIPO_TABLET);
+        System.out.println(ID_IMPRESORA + ". "+ TIPO_IMPRESORA);
         System.out.println("Escoja el tipo: ");
         int idTipo = sc.nextInt();
 
@@ -64,18 +67,18 @@ public class Sisinvcol {
 
     public static String obtenerTipoUsandoId(int idTipo){
         switch (idTipo){
-            case 1:
+            case ID_LAPTOP:
                 return TIPO_LAPTOP;
-            case 2:
+            case ID_TABLET:
                 return TIPO_TABLET;
-            case 3:
+            case ID_IMPRESORA:
                 return TIPO_IMPRESORA;
             default:
                 return "-";
         }
     }
 
-    public static void mostrarDetalleInventario(List<List<String>> data){
+    public static void listarDetalleInventario(List<List<String>> data){
         Long cantidadImpresora = data.stream().filter(fila -> fila.get(2).equals(TIPO_IMPRESORA)).count();
         Long cantidadLaptop = data.stream().filter(fila -> fila.get(2).equals(TIPO_LAPTOP)).count();
         Long cantidadTablet = data.stream().filter(fila -> fila.get(2).equals(TIPO_TABLET)).count();
@@ -88,7 +91,7 @@ public class Sisinvcol {
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "CANT.",cantidadLaptop,cantidadTablet,cantidadImpresora);
     }
 
-    public static void mostrarInventario(List<List<String>> data){
+    public static void listarInventario(List<List<String>> data){
         System.out.println(crearLineaHorizontal(80));
         System.out.printf("| %20s | %30s | %20s |\n", "CODIGO","DESCRIPCION","TIPO");
         System.out.println(crearLineaHorizontal(80));
@@ -99,7 +102,7 @@ public class Sisinvcol {
         }
     }
 
-    public static void mostrarPersonal(List<List<String>> data){
+    public static void listarPersonal(List<List<String>> data){
         System.out.println(crearLineaHorizontal(80));
         System.out.printf("| %20s | %30s | %20s |\n", "NOMBRE","ROL", "USUARIO");
         System.out.println(crearLineaHorizontal(80));
@@ -110,7 +113,7 @@ public class Sisinvcol {
         }
     }
 
-    public static void mostrarTiposComponentes(){
+    public static void listarTiposComponentes(){
 
         List<String> tipos = obtenerTiposComponentes();
 

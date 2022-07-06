@@ -11,9 +11,9 @@ public class Sisinvcol {
 
     public static void main(String[] args) {
 
-        List<List<String>> inventario = leerData("inventario.csv");
+        List<List<String>> inventario = leerArchivo("inventario.csv");
 
-        List<List<String>> personal = leerData("personal.csv");
+        List<List<String>> personal = leerArchivo("personal.csv");
 
         mostrarInventario(inventario);
 
@@ -58,7 +58,6 @@ public class Sisinvcol {
         }
     }
 
-
     public static List<String> obtenerTiposComponentes(){
         List<String> tipos = new LinkedList <>();
         tipos.add(TIPO_LAPTOP);
@@ -67,7 +66,7 @@ public class Sisinvcol {
         return tipos;
     }
 
-    public static List<List<String>> leerData(String nombreArchivo){
+    public static List<List<String>> leerArchivo(String nombreArchivo){
 
         List<List<String>> dataset = new LinkedList <>();
 

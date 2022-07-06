@@ -5,11 +5,17 @@ import java.util.List;
 
 public class Sisinvcol {
 
+    public static final String TIPO_LAPTOP = "laptop";
+    public static final String TIPO_TABLET = "tablet";
+    public static final String TIPO_IMPRESORA = "impresora";
+
     public static void main(String[] args) {
 
         List<List<String>> data = leerData();
 
         mostrarInventario(data);
+
+        mostrarTiposComponentes();
     }
 
     public static void mostrarInventario(List<List<String>> data){
@@ -24,6 +30,33 @@ public class Sisinvcol {
             System.out.printf("| %16s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
             System.out.println("");
         }
+    }
+
+    public static void mostrarTiposComponentes(){
+
+        List<String> tipos = obtenerTiposComponentes();
+
+        System.out.printf("| %16s |\n", "TIPO");
+
+        for (int i = 0; i < 30; i++) {
+            System.out.print("-");
+        }
+
+        System.out.println("");
+
+        for (String tipo : tipos) {
+            System.out.printf("| %16s |", tipo);
+            System.out.println("");
+        }
+    }
+
+
+    public static List<String> obtenerTiposComponentes(){
+        List<String> tipos = new LinkedList <>();
+        tipos.add(TIPO_LAPTOP);
+        tipos.add(TIPO_TABLET);
+        tipos.add(TIPO_IMPRESORA);
+        return tipos;
     }
 
     public static List<List<String>> leerData(){

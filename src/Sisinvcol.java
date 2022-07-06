@@ -21,6 +21,7 @@ public class Sisinvcol {
 
     public static void main(String[] args) {
 
+        // Iniciar simulador de base de datos: Lectura de informacion desde archivos CSV
         List<List<String>> inventario = leerArchivo("inventario.csv");
         List<List<String>> personal = leerArchivo("personal.csv");
 

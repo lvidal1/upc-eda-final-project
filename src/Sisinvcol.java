@@ -13,6 +13,10 @@ public class Sisinvcol {
     public static final String TIPO_TABLET = "Tablet";
     public static final String TIPO_IMPRESORA = "Impresora";
 
+    public static final String ESTADO_DISPONIBLE = "Disponible";
+
+    public static final String ESTADO_REPARACION = "En reparación";
+
     public static void main(String[] args) {
 
         List<List<String>> inventario = leerArchivo("inventario.csv");
@@ -26,20 +30,27 @@ public class Sisinvcol {
             opcionMenu = ingresarOpcionMenu();
 
             if(opcionMenu == 1){
+                System.out.println("*-------- Listar componentes -------*\n");
                 listarInventario(inventario);
             }
             if(opcionMenu == 2){
+                System.out.println("*-------- Listar tipos de componentes -------*\n");
                 listarTiposComponentes();
             }
             if(opcionMenu == 3){
+                System.out.println("*-------- Listar informacion del personal -------*\n");
                 listarPersonal(personal);
             }
             if(opcionMenu == 4){
+                System.out.println("*-------- Guardar nuevo componente -------*\n");
                 registrarNuevoComponente(inventario);
             }
             if(opcionMenu == 5){
+                System.out.println("*-------- Estadisticas -------*\n");
                 listarDetalleInventario(inventario);
             }
+
+            System.out.println("\n");
 
         } while (opcionMenu != 6);
 
@@ -124,7 +135,7 @@ public class Sisinvcol {
         Long cantidadLaptop = data.stream().filter(fila -> fila.get(2).equals(TIPO_LAPTOP)).count();
         Long cantidadTablet = data.stream().filter(fila -> fila.get(2).equals(TIPO_TABLET)).count();
 
-        System.out.println("CANTIDAD DE COMPONENTES:\n");
+        System.out.println("CANTIDAD DE COMPONENTES:");
 
         System.out.println(crearLineaHorizontal(55));
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "","LAPTOP","TABLET","IMPRESORA");
@@ -133,12 +144,12 @@ public class Sisinvcol {
     }
 
     public static void listarInventario(List<List<String>> data){
-        System.out.println(crearLineaHorizontal(80));
-        System.out.printf("| %20s | %30s | %20s |\n", "CODIGO","DESCRIPCION","TIPO");
-        System.out.println(crearLineaHorizontal(80));
+        System.out.println(crearLineaHorizontal(103));
+        System.out.printf("| %20s | %30s | %20s | %20s |\n", "CODIGO","DESCRIPCION","TIPO","ESTADO");
+        System.out.println(crearLineaHorizontal(103));
 
         for (List<String> fila : data) {
-            System.out.printf("| %20s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
+            System.out.printf("| %20s | %30s | %20s | %20s |", fila.get(0), fila.get(1), fila.get(2), fila.get(3));
             System.out.println("");
         }
     }

@@ -1,11 +1,11 @@
-C00001,Laptop 0001,Laptop
-C00002,Laptop 0002,Laptop
-C00003,Impresora 0001,Impresora
-C00004,Tablet 0001,Tablet
-C00005,Impresora 0002,Impresora
-C00006,Impresora 0003,Impresora
-C00007,Impresora 0004,Impresora
-C00008,Laptop 0004,Laptop
-C00009,Laptop 0004,Laptop
-CO0010,Tablet 0002,Tablet
-CO0011,Tablet 0003,Tablet
+C00001,Laptop 0001,Laptop,Disponible
+C00002,Laptop 0002,Laptop,Disponible
+C00003,Impresora 0001,Impresora,Disponible
+C00004,Tablet 0001,Tablet,En reparacion
+C00005,Impresora 0002,Impresora,En reparacion
+C00006,Impresora 0003,Impresora,Disponible
+C00007,Impresora 0004,Impresora,Disponible
+C00008,Laptop 0004,Laptop,Disponible
+C00009,Laptop 0004,Laptop,Disponible
+C00010,Tablet 0002,Tablet,En reparacion
+C00011,Tablet 0003,Tablet,Disponible

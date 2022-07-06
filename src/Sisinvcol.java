@@ -26,17 +26,17 @@ public class Sisinvcol {
 
         registrarNuevoComponente(inventario);
 
+    }
+
+    public static void registrarNuevoComponente(List<List<String>> inventario){
+
+        List<String> componente = ingresarDatosNuevoComponente();
+        inventario.add(componente);
+        System.out.println("Componente registrado correctamente");
         mostrarInventario(inventario);
     }
 
-    public static void registrarNuevoComponente(List<List<String>> data){
-
-        List<String> componente = leerNuevoComponente();
-        data.add(componente);
-        System.out.println("Componente registrado correctamente");
-    }
-
-    public static List<String> leerNuevoComponente(){
+    public static List<String> ingresarDatosNuevoComponente(){
         Scanner sc = new Scanner(System.in);
 
         List<String> componente = new LinkedList<>();

@@ -107,48 +107,76 @@ public class Sisinvcol {
         return opcion;
     }
 
+    // Registra un nuevo componente en la matriz del inventario
     public static void registrarNuevoComponente(List<List<String>> inventario){
+        // Obtiene los datos del componente y los almacena en una lista de String
         List<String> componente = ingresarDatosNuevoComponente();
+        // Agrega el nuevo componente a la matriz
         inventario.add(componente);
+        // Muestra alerta
         System.out.println("Componente registrado correctamente");
+        // Lista todos los datos del inventario actualizado
         listarInventario(inventario);
     }
 
+    // Captura los datos del nuevo componente ingresados por el teclado
     public static List<String> ingresarDatosNuevoComponente(){
+        // Crea lector
         Scanner sc = new Scanner(System.in);
-
+        // Crea lista de String temporal para almacenar los datos
         List<String> componente = new LinkedList<>();
 
+        // Mostrar las opciones disponibles para ingresar el TIPO DE COMPONENTE
+        // - Solo le permitimos escoger el tipo de componente para mejorar la experiencia
+        //   y mantener la integridad de la información
         System.out.println("*---- Tipos de componente disponibles -----*");
         System.out.println(ID_LAPTOP + ". "+ TIPO_LAPTOP);
         System.out.println(ID_TABLET + ". "+ TIPO_TABLET);
         System.out.println(ID_IMPRESORA + ". "+ TIPO_IMPRESORA);
         System.out.println("Escoja el tipo: ");
+        // Captura el valor entero ingresado para el TIPO DE COMPONENTE
         int idTipo = sc.nextInt();
 
+        // Captura el valor del código ingresado
         System.out.println("Codigo: ");
         String codigo = sc.next();
 
+        // Captura el valor de la descripción ingresada
         System.out.println("Descripcion: ");
         sc.nextLine();
         String descripcion = sc.nextLine();
 
+        // Guardamos los diferentes datos en el List componente
+        // - Guardamos el código
         componente.add(codigo);
+        // - Guardamos la descripción
         componente.add(descripcion);
+        // - Guardamos el nombre del tipo de componente
+        //      Importante! Como el valor ingresado para el tipo es un número,
+        //      debemos transformar el número a un nombre del tipo de componente.
+        //      Ej.  1  -> "Laptop"
+        //      Ej.  2  -> "Tablet"
+        //      Para eso, usamos la funcion obtenerTipoUsandoId que retorna el nombre del tipo de componente
         componente.add(obtenerTipoUsandoId(idTipo));
+        // - Guardamos el estado como DISPONIBLE por defecto
         componente.add(ESTADO_DISPONIBLE);
 
+        // Retornamos el componente con los datos capturados
         return  componente;
     }
 
+    // Permite intercambiar un número ingresado por un texto que es el nombre del tipo de componente
+    // - Se usa las constantes definidas en la clase
     public static String obtenerTipoUsandoId(int idTipo){
+        // Dependiendo del número ingresado, devolverá un nombre
         switch (idTipo){
-            case ID_LAPTOP:
-                return TIPO_LAPTOP;
-            case ID_TABLET:
-                return TIPO_TABLET;
-            case ID_IMPRESORA:
-                return TIPO_IMPRESORA;
+            case ID_LAPTOP: // 1
+                return TIPO_LAPTOP; // "Laptop"
+            case ID_TABLET: // 2
+                return TIPO_TABLET; // "Tablet"
+            case ID_IMPRESORA: // 2
+                return TIPO_IMPRESORA; // "Impresora"
+            // Otro valor, no regresa nada
             default:
                 return "-";
         }

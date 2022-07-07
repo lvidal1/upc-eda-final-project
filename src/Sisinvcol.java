@@ -245,7 +245,7 @@ public class Sisinvcol {
             //          fila.get(1)  -> Columna 2 -> Descripción
             //          fila.get(2)  -> Columna 3 -> Tipo
             //          fila.get(3)  -> Columna 4 -> Estado
-            // El orden se las columnas se define en el archivo inventario.csv
+            // El orden de las columnas se define en el archivo inventario.csv
             System.out.printf("| %20s | %30s | %20s | %20s |", fila.get(0), fila.get(1), fila.get(2), fila.get(3));
             System.out.println("");
         }
@@ -272,19 +272,27 @@ public class Sisinvcol {
             //          fila.get(0)  -> Columna 1 -> Nombre
             //          fila.get(1)  -> Columna 2 -> Rol
             //          fila.get(2)  -> Columna 3 -> Usuario
-            // El orden se las columnas se define en el archivo inventario.csv
+            // El orden de las columnas se define en el archivo inventario.csv
             System.out.printf("| %20s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
             System.out.println("");
         }
     }
 
+    // Lista la información de cada tipo de componentes
     public static void listarTiposComponentes(){
+        // Obtiene los tipos de componentes y los almacena en listado List<String>
         List<String> tipos = obtenerTiposComponentes();
 
+        // Muestra el encabezado para la lista
+        // - Crea una linea horizontal de guiones (-) de 80 símbolos
         System.out.println(crearLineaHorizontal(80));
+        // - Formatea los textos del encabezado
         System.out.printf("| %20s |\n", "TIPO");
+        // - Crea una linea horizontal de guiones (-) de 80 símbolos
         System.out.println(crearLineaHorizontal(30));
 
+        // Recorre cada tipo dentro de los
+        // - la variable tipos representa el listado de componentes
         for (String tipo : tipos) {
             System.out.printf("| %20s |", tipo);
             System.out.println("");

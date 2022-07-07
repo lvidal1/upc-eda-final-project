@@ -308,7 +308,7 @@ public class Sisinvcol {
             //          fila.get(0)  -> Columna 1 -> Nombre
             //          fila.get(1)  -> Columna 2 -> Rol
             //          fila.get(2)  -> Columna 3 -> Usuario
-            // El orden de las columnas se define en el archivo inventario.csv
+            // El orden de las columnas se define en el archivo personal.csv
             System.out.printf("| %20s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
             System.out.println("");
         }

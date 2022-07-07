@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class Sisinvcol {
 
+    // Listado de valores constantes
     public static final int ID_LAPTOP = 1;
     public static final int ID_TABLET = 2;
     public static final int ID_IMPRESORA = 3;
@@ -21,17 +22,25 @@ public class Sisinvcol {
 
     public static void main(String[] args) {
 
-        // Iniciar simulador de base de datos: Lectura de informacion desde archivos CSV
+        // Inicia simulador de base de datos: Lectura de informacion desde archivos CSV
+
+        // Almacenar la información del inventario en una matriz, usando List<List<String>> (Matriz)
         List<List<String>> inventario = leerArchivo("inventario.csv");
+        // Almacenar la información del personal en una matriz, usando List<List<String>> (Matriz)
         List<List<String>> personal = leerArchivo("personal.csv");
 
         System.out.println("###### Sistema Sisinvcol v1.0 ######\n");
 
         int opcionMenu;
 
+        // Muestra el menu de opciones en cada funcion del sistema para mejorar la experiencia,
+        // hasta que el usuario decida terminarlo, ingresando la opcion 6
         do {
+
+            // Obtiene la opcion del usuario
             opcionMenu = ingresarOpcionMenu();
 
+            // Ejecuta una funcion especifica del sistema
             if(opcionMenu == 1){
                 System.out.println("*-------- Listar componentes -------*\n");
                 listarInventario(inventario);
@@ -60,7 +69,7 @@ public class Sisinvcol {
         System.out.println("\nGracias! Tenga un buen dia.");
 
     }
-
+    
     public static int ingresarOpcionMenu(){
         int opcion = 0, read;
         Scanner sc = new Scanner(System.in);

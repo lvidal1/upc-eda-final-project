@@ -69,11 +69,19 @@ public class Sisinvcol {
         System.out.println("\nGracias! Tenga un buen dia.");
 
     }
-    
+
+    // Captura la opción del menu ingresada por el teclado.
+    // - Solo acepta valores enteros del 1 al 6.
+    // - Ingresar otro valor no se tomará en cuenta y hará que el bucle( while ) interno se repita.
     public static int ingresarOpcionMenu(){
+        // Crea la variable opción y la inicia en 0.
+        // Crea la variable read para almacenar temporalmente el valor ingresado
         int opcion = 0, read;
+        // Crea lector
         Scanner sc = new Scanner(System.in);
 
+        // Inicia el bucle para mostrar el menu,
+        // Si la opcion es 0, siempre se mostrará el menu y pedirá ingresar una opción
         while(opcion == 0){
             System.out.println("*-------- Menu Principal -------*");
             System.out.println("1. Listar componentes inventariados");
@@ -84,11 +92,15 @@ public class Sisinvcol {
             System.out.println("6. Salir");
 
             System.out.println("Escoja una opcion:");
+            // Lectura del valor ingresado
             read = sc.nextInt();
 
+            // Verificamos si el valor de la opción ingresada cumple con alguna de las opciones
             if(read == 1 || read == 2 || read == 3 || read == 4 || read == 5  || read == 6){
+                // Guardamos la opción
                 opcion = read;
             }else{
+                // Mostramos alerta
                 System.out.println("Elija una opción válida. Intente nuevamente\n");
             }
         }

@@ -222,23 +222,57 @@ public class Sisinvcol {
 
     }
 
+    // Lista la información de cada componente en el inventario
     public static void listarInventario(List<List<String>> data){
+
+        // Muestra el encabezado para la lista
+        // - Crea una linea horizontal de guiones (-) de 103 símbolos
         System.out.println(crearLineaHorizontal(103));
+        // - Formatea los textos del encabezado
+        //      o El formato %20s, %30s, etc permite dar el ancho a las columnas del listado
         System.out.printf("| %20s | %30s | %20s | %20s |\n", "CODIGO","DESCRIPCION","TIPO","ESTADO");
+        // - Crea una linea horizontal de guiones (-) de 103 símbolos
         System.out.println(crearLineaHorizontal(103));
 
+        // Recorre cada componente(fila) dentro de la matriz del inventario
+        // - la variable data representa la matriz del inventario
         for (List<String> fila : data) {
+            // Formatea los dato del componente
+            // - Cada componente es un Listado (List<String>) y para obtener cada dato del componente(fila)
+            //   se debe usar la función .get()
+            //      Ej.
+            //          fila.get(0)  -> Columna 1 -> Código
+            //          fila.get(1)  -> Columna 2 -> Descripción
+            //          fila.get(2)  -> Columna 3 -> Tipo
+            //          fila.get(3)  -> Columna 4 -> Estado
+            // El orden se las columnas se define en el archivo inventario.csv
             System.out.printf("| %20s | %30s | %20s | %20s |", fila.get(0), fila.get(1), fila.get(2), fila.get(3));
             System.out.println("");
         }
     }
 
+    // Lista la información de cada persona en el personal
     public static void listarPersonal(List<List<String>> data){
+        // Muestra el encabezado para la lista
+        // - Crea una linea horizontal de guiones (-) de 80 símbolos
         System.out.println(crearLineaHorizontal(80));
+        // - Formatea los textos del encabezado
+        //      o El formato %20s, %30s, etc permite dar el ancho a las columnas del listado
         System.out.printf("| %20s | %30s | %20s |\n", "NOMBRE","ROL", "USUARIO");
+        // - Crea una linea horizontal de guiones (-) de 80 símbolos
         System.out.println(crearLineaHorizontal(80));
 
+        // Recorre cada persona(fila) dentro de la matriz del personal
+        // - la variable data representa la matriz del personal
         for (List<String> fila : data) {
+            // Formatea los dato del componente
+            // - Cada componente es un Listado (List<String>) y para obtener cada dato de la persona(fila)
+            //   se debe usar la función .get()
+            //      Ej.
+            //          fila.get(0)  -> Columna 1 -> Nombre
+            //          fila.get(1)  -> Columna 2 -> Rol
+            //          fila.get(2)  -> Columna 3 -> Usuario
+            // El orden se las columnas se define en el archivo inventario.csv
             System.out.printf("| %20s | %30s | %20s |", fila.get(0), fila.get(1), fila.get(2));
             System.out.println("");
         }

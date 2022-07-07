@@ -115,6 +115,7 @@ public class Sisinvcol {
         componente.add(codigo);
         componente.add(descripcion);
         componente.add(obtenerTipoUsandoId(idTipo));
+        componente.add(ESTADO_DISPONIBLE);
 
         return  componente;
     }

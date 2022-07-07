@@ -23,10 +23,10 @@ public class Sisinvcol {
     public static void main(String[] args) {
 
         // Inicia simulador de base de datos: Lectura de informacion desde archivos CSV
-
-        // Almacenar la información del inventario en una matriz, usando List<List<String>> (Matriz)
+        // - Almacenar la información del inventario en una matriz, usando List<List<String>> (Matriz)
         List<List<String>> inventario = leerArchivo("inventario.csv");
-        // Almacenar la información del personal en una matriz, usando List<List<String>> (Matriz)
+
+        // - Almacenar la información del personal en una matriz, usando List<List<String>> (Matriz)
         List<List<String>> personal = leerArchivo("personal.csv");
 
         System.out.println("###### Sistema Sisinvcol v1.0 ######\n");
@@ -74,9 +74,11 @@ public class Sisinvcol {
     // - Solo acepta valores enteros del 1 al 6.
     // - Ingresar otro valor no se tomará en cuenta y hará que el bucle( while ) interno se repita.
     public static int ingresarOpcionMenu(){
+
         // Crea la variable opción y la inicia en 0.
         // Crea la variable read para almacenar temporalmente el valor ingresado
         int opcion = 0, read;
+
         // Crea lector
         Scanner sc = new Scanner(System.in);
 
@@ -90,18 +92,23 @@ public class Sisinvcol {
             System.out.println("4. Guardar nuevo componente");
             System.out.println("5. Mostrar estadisticas");
             System.out.println("6. Salir");
-
             System.out.println("Escoja una opcion:");
+
             // Lectura del valor ingresado
             read = sc.nextInt();
 
             // Verificamos si el valor de la opción ingresada cumple con alguna de las opciones
             if(read == 1 || read == 2 || read == 3 || read == 4 || read == 5  || read == 6){
+
                 // Guardamos la opción
                 opcion = read;
+
+            // En caso contrario,
             }else{
+
                 // Mostramos alerta
                 System.out.println("Elija una opción válida. Intente nuevamente\n");
+
             }
         }
         return opcion;
@@ -109,20 +116,26 @@ public class Sisinvcol {
 
     // Registra un nuevo componente en la matriz del inventario
     public static void registrarNuevoComponente(List<List<String>> inventario){
+
         // Obtiene los datos del componente y los almacena en una lista de String
         List<String> componente = ingresarDatosNuevoComponente();
+
         // Agrega el nuevo componente a la matriz
         inventario.add(componente);
+
         // Muestra alerta
         System.out.println("Componente registrado correctamente");
+
         // Lista todos los datos del inventario actualizado
         listarInventario(inventario);
     }
 
     // Captura los datos del nuevo componente ingresados por el teclado
     public static List<String> ingresarDatosNuevoComponente(){
+
         // Crea lector
         Scanner sc = new Scanner(System.in);
+
         // Crea lista de String temporal para almacenar los datos
         List<String> componente = new LinkedList<>();
 
@@ -134,6 +147,7 @@ public class Sisinvcol {
         System.out.println(ID_TABLET + ". "+ TIPO_TABLET);
         System.out.println(ID_IMPRESORA + ". "+ TIPO_IMPRESORA);
         System.out.println("Escoja el tipo: ");
+
         // Captura el valor entero ingresado para el TIPO DE COMPONENTE
         int idTipo = sc.nextInt();
 
@@ -149,8 +163,10 @@ public class Sisinvcol {
         // Guardamos los diferentes datos en el List componente
         // - Guardamos el código
         componente.add(codigo);
+
         // - Guardamos la descripción
         componente.add(descripcion);
+
         // - Guardamos el nombre del tipo de componente
         //      Importante! Como el valor ingresado para el tipo es un número,
         //      debemos transformar el número a un nombre del tipo de componente.
@@ -158,6 +174,7 @@ public class Sisinvcol {
         //      Ej.  2  -> "Tablet"
         //      Para eso, usamos la funcion obtenerTipoUsandoId que retorna el nombre del tipo de componente
         componente.add(obtenerTipoUsandoId(idTipo));
+
         // - Guardamos el estado como DISPONIBLE por defecto
         componente.add(ESTADO_DISPONIBLE);
 
@@ -168,6 +185,7 @@ public class Sisinvcol {
     // Permite intercambiar un número ingresado por un texto que es el nombre del tipo de componente
     // - Se usa las constantes definidas en la clase
     public static String obtenerTipoUsandoId(int idTipo){
+
         // Dependiendo del número ingresado, devolverá un nombre
         switch (idTipo){
             case ID_LAPTOP: // 1
@@ -183,6 +201,7 @@ public class Sisinvcol {
     }
 
     public static void listarDetalleInventario(List<List<String>> data){
+
         // Obtiene la informacion sobre cantidades de los componentes
         // - Filtra todos los componentes donde el Tipo sea igual a "Impresora" y los contabiliza
         Long cantidadImpresora = data.stream().filter(fila -> fila.get(2).equals(TIPO_IMPRESORA)).count();
@@ -207,25 +226,24 @@ public class Sisinvcol {
 
         // Mostrar encabezado de CANTIDAD DE COMPONENTES
         System.out.println("CANTIDAD DE COMPONENTES:");
-
         System.out.println(crearLineaHorizontal(55));
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "","LAPTOP","TABLET","IMPRESORA");
         System.out.println(crearLineaHorizontal(55));
+
         // Mostrar información sobre las cantidades
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "CANT.",cantidadLaptop,cantidadTablet,cantidadImpresora);
 
         // Mostrar encabezado de ESTADO DE COMPONENTES
         System.out.println("\nESTADO DE COMPONENTES:");
-
         System.out.println(crearLineaHorizontal(45));
         System.out.printf("| %10S | %10S | %15S |\n", "","DISPONIBLE","EN REPARACION");
         System.out.println(crearLineaHorizontal(45));
+
         // Mostrar información sobre los estados
         System.out.printf("| %10S | %10S | %15S |\n", "CANT.",cantidadDisponible,cantidadEnReparacion);
 
         // Mostrar encabezado de COMPONENTES EN REPARACION
         System.out.println("\nCOMPONENTES EN REPARACION:");
-
         System.out.println(crearLineaHorizontal(47));
         System.out.printf("| %10S | %30s |\n", "CODIGO","DESCRIPCION");
         System.out.println(crearLineaHorizontal(47));
@@ -244,16 +262,18 @@ public class Sisinvcol {
         // Muestra el encabezado para la lista
         // - Crea una linea horizontal de guiones (-) de 103 símbolos
         System.out.println(crearLineaHorizontal(103));
+
         // - Formatea los textos del encabezado
         //      o El formato %20s, %30s, etc permite dar el ancho a las columnas del listado
         System.out.printf("| %20s | %30s | %20s | %20s |\n", "CODIGO","DESCRIPCION","TIPO","ESTADO");
+
         // - Crea una linea horizontal de guiones (-) de 103 símbolos
         System.out.println(crearLineaHorizontal(103));
 
         // Recorre cada componente(fila) dentro de la matriz del inventario
         // - la variable data representa la matriz del inventario
         for (List<String> fila : data) {
-            // Formatea los dato del componente
+            // Formatea los datos del componente
             // - Cada componente es un Listado (List<String>) y para obtener cada dato del componente(fila)
             //   se debe usar la función .get()
             //      Ej.
@@ -281,8 +301,8 @@ public class Sisinvcol {
         // Recorre cada persona(fila) dentro de la matriz del personal
         // - la variable data representa la matriz del personal
         for (List<String> fila : data) {
-            // Formatea los dato del componente
-            // - Cada componente es un Listado (List<String>) y para obtener cada dato de la persona(fila)
+            // Formatea los dato de la persona
+            // - Cada persona es un Listado (List<String>) y para obtener cada dato de la persona(fila)
             //   se debe usar la función .get()
             //      Ej.
             //          fila.get(0)  -> Columna 1 -> Nombre
@@ -296,6 +316,7 @@ public class Sisinvcol {
 
     // Lista la información de cada tipo de componentes
     public static void listarTiposComponentes(){
+
         // Obtiene los tipos de componentes y los almacena en listado List<String>
         List<String> tipos = obtenerTiposComponentes();
 
@@ -317,12 +338,15 @@ public class Sisinvcol {
 
     // Obtiene información de los tipos de componente
     public static List<String> obtenerTiposComponentes(){
+
         // Crea una lista para almacenar los tipos
         List<String> tipos = new LinkedList <>();
+
         // Agrega los tipos a la lista usando las constantes
         tipos.add(TIPO_LAPTOP); // Agrega el texto "Laptop"
         tipos.add(TIPO_TABLET); // Agrega el texto "Tablet"
         tipos.add(TIPO_IMPRESORA); // Agrega el texto "Impresora"
+
         // Retorna la lista de tipos
         return tipos;
     }
@@ -330,6 +354,7 @@ public class Sisinvcol {
     // Lee un archivo .CSV dentro de la carpeta y almacena la información obtenida en una matriz
     // - La matriz tiene una estructura de List<List<String>> : listas dentro de una lista
     public static List<List<String>> leerArchivo(String nombreArchivo){
+        
         // Crea una matriz(dataset) de forma List<List<String>>
         List<List<String>> dataset = new LinkedList <>();
 

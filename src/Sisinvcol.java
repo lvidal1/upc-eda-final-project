@@ -183,38 +183,54 @@ public class Sisinvcol {
     }
 
     public static void listarDetalleInventario(List<List<String>> data){
-        // Informacion sobre cantidades
+        // Obtiene la informacion sobre cantidades de los componentes
+        // - Filtra todos los componentes donde el Tipo sea igual a "Impresora" y los contabiliza
         Long cantidadImpresora = data.stream().filter(fila -> fila.get(2).equals(TIPO_IMPRESORA)).count();
+
+        // - Filtra todos los componentes donde el Tipo sea igual a "Impresora" y los contabiliza
         Long cantidadLaptop = data.stream().filter(fila -> fila.get(2).equals(TIPO_LAPTOP)).count();
+
+        // - Filtra todos los componentes donde el Tipo sea igual a "Tablet" y los contabiliza
         Long cantidadTablet = data.stream().filter(fila -> fila.get(2).equals(TIPO_TABLET)).count();
 
-        // Informacion sobre estado
+        /// Obtiene la informacion sobre el estado de los componentes
+        // - Filtra todos los componentes donde el Estado sea igual a "Disponible" y los contabiliza
         Long cantidadDisponible = data.stream().filter(fila -> fila.get(3).equals(ESTADO_DISPONIBLE)).count();
+
+        // - Filtra todos los componentes donde el Estado sea igual a "En reparación" y los contabiliza
         Long cantidadEnReparacion = data.stream().filter(fila -> fila.get(3).equals(ESTADO_REPARACION)).count();
 
-        // Informacion sobre componentes en reparacion
+        // Obtiene la informacion sobre los componentes en reparación
+        // - Filtra todos los componentes donde el Estado sea igual a "En reparación" y los almacena
         List<List<String>> componentesEnReparacion = data.stream().filter(fila -> fila.get(3).equals(ESTADO_REPARACION)).collect(Collectors.toList());
 
+
+        // Mostrar encabezado de CANTIDAD DE COMPONENTES
         System.out.println("CANTIDAD DE COMPONENTES:");
 
         System.out.println(crearLineaHorizontal(55));
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "","LAPTOP","TABLET","IMPRESORA");
         System.out.println(crearLineaHorizontal(55));
+        // Mostrar información sobre las cantidades
         System.out.printf("| %10S | %10S | %10S | %10S |\n", "CANT.",cantidadLaptop,cantidadTablet,cantidadImpresora);
 
+        // Mostrar encabezado de ESTADO DE COMPONENTES
         System.out.println("\nESTADO DE COMPONENTES:");
 
         System.out.println(crearLineaHorizontal(45));
         System.out.printf("| %10S | %10S | %15S |\n", "","DISPONIBLE","EN REPARACION");
         System.out.println(crearLineaHorizontal(45));
+        // Mostrar información sobre los estados
         System.out.printf("| %10S | %10S | %15S |\n", "CANT.",cantidadDisponible,cantidadEnReparacion);
 
+        // Mostrar encabezado de COMPONENTES EN REPARACION
         System.out.println("\nCOMPONENTES EN REPARACION:");
 
         System.out.println(crearLineaHorizontal(47));
         System.out.printf("| %10S | %30s |\n", "CODIGO","DESCRIPCION");
         System.out.println(crearLineaHorizontal(47));
 
+        // Recorre los componentes en reparación y los muestra
         for (List<String> fila : componentesEnReparacion) {
             System.out.printf("| %10S | %30s |", fila.get(0), fila.get(1));
             System.out.println("");
@@ -299,15 +315,22 @@ public class Sisinvcol {
         }
     }
 
+    // Obtiene información de los tipos de componente
     public static List<String> obtenerTiposComponentes(){
+        // Crea una lista para almacenar los tipos
         List<String> tipos = new LinkedList <>();
-        tipos.add(TIPO_LAPTOP);
-        tipos.add(TIPO_TABLET);
-        tipos.add(TIPO_IMPRESORA);
+        // Agrega los tipos a la lista usando las constantes
+        tipos.add(TIPO_LAPTOP); // Agrega el texto "Laptop"
+        tipos.add(TIPO_TABLET); // Agrega el texto "Tablet"
+        tipos.add(TIPO_IMPRESORA); // Agrega el texto "Impresora"
+        // Retorna la lista de tipos
         return tipos;
     }
 
+    // Lee un archivo .CSV dentro de la carpeta y almacena la información obtenida en una matriz
+    // - La matriz tiene una estructura de List<List<String>> : listas dentro de una lista
     public static List<List<String>> leerArchivo(String nombreArchivo){
+        // Crea una matriz(dataset) de forma List<List<String>>
         List<List<String>> dataset = new LinkedList <>();
 
         String fila;
@@ -331,7 +354,7 @@ public class Sisinvcol {
                     nuevaFila.add(detallesFila[i]);
                 }
 
-                // Agregar nueva fila al dataset
+                // Agregar nueva fila al matriz
                 dataset.add(nuevaFila);
             }
         }catch (IOException e)   {
@@ -342,11 +365,15 @@ public class Sisinvcol {
         return dataset;
     }
 
+    // Crea un lector de archivo usando el nombre del archivo
     public static BufferedReader crearLectorArchivo(String nombreArchivo){
         InputStream inputStream = Sisinvcol.class.getClassLoader().getResourceAsStream(nombreArchivo);
         return new BufferedReader(new InputStreamReader(inputStream));
     }
 
+    // Crea una texto que contiene simbolos horizontales como separador
+    // -    Ej1: crearLineaHorizontal(5)    ->      -----
+    // -    Ej1: crearLineaHorizontal(10)    ->     ----------
     public static String crearLineaHorizontal(int numero){
         String linea = "";
         for (int i = 0; i < numero; i++) {

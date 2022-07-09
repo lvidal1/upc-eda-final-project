@@ -1,11 +1,11 @@
-C00001,Laptop 0001,Laptop,Disponible
-C00002,Laptop 0002,Laptop,Disponible
-C00003,Impresora 0001,Impresora,Disponible
-C00004,Tablet 0001,Tablet,En reparacion
-C00005,Impresora 0002,Impresora,En reparacion
-C00006,Impresora 0003,Impresora,Disponible
-C00007,Impresora 0004,Impresora,Disponible
-C00008,Laptop 0004,Laptop,Disponible
-C00009,Laptop 0004,Laptop,Disponible
-C00010,Tablet 0002,Tablet,En reparacion
-C00011,Tablet 0003,Tablet,Disponible
+C00001,Laptop 0001,Laptop,Disponible, Aula de Computo
+C00002,Laptop 0002,Laptop,Disponible, Aula de Computo
+C00003,Impresora 0001,Impresora,Disponible, Aula de Computo
+C00004,Tablet 0001,Tablet,En reparacion, Aula de Computo
+C00005,Impresora 0002,Impresora,En reparacion, Aula 1
+C00006,Impresora 0003,Impresora,Disponible, Direccion
+C00007,Impresora 0004,Impresora,Disponible, Direccion
+C00008,Laptop 0004,Laptop,Disponible, Direccion
+C00009,Laptop 0004,Laptop,Disponible, Direccion
+C00010,Tablet 0002,Tablet,En reparacion, Direccion
+C00011,Tablet 0003,Tablet,Disponible, Direccion

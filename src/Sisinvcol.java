@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-
 public class Sisinvcol {
 
     public static final int ID_LAPTOP = 1;
@@ -18,6 +17,12 @@ public class Sisinvcol {
     public static final String TIPO_IMPRESORA = "Impresora";
     public static final String ESTADO_DISPONIBLE = "Disponible";
     public static final String ESTADO_REPARACION = "En reparacion";
+
+    public static final String UBI_DIRECCION ="Direccion";
+
+    public static final String UBI_COMPUTO ="Aula de Computo";
+
+    public static final String UBI_AULA_1 ="Aula 1";
 
     public static void main(String[] args) {
 
@@ -116,6 +121,7 @@ public class Sisinvcol {
         componente.add(descripcion);
         componente.add(obtenerTipoUsandoId(idTipo));
         componente.add(ESTADO_DISPONIBLE);
+        componente.add(UBI_DIRECCION);
 
         return  componente;
     }
@@ -174,12 +180,12 @@ public class Sisinvcol {
     }
 
     public static void listarInventario(List<List<String>> data){
-        System.out.println(crearLineaHorizontal(103));
-        System.out.printf("| %20s | %30s | %20s | %20s |\n", "CODIGO","DESCRIPCION","TIPO","ESTADO");
-        System.out.println(crearLineaHorizontal(103));
+        System.out.println(crearLineaHorizontal(125));
+        System.out.printf("| %20s | %30s | %20s | %20s | %20s |\n", "CODIGO","DESCRIPCION","TIPO","ESTADO", "ULT. UBICACION");
+        System.out.println(crearLineaHorizontal(125));
 
         for (List<String> fila : data) {
-            System.out.printf("| %20s | %30s | %20s | %20s |", fila.get(0), fila.get(1), fila.get(2), fila.get(3));
+            System.out.printf("| %20s | %30s | %20s | %20s | %20s |", fila.get(0), fila.get(1), fila.get(2), fila.get(3), fila.get(4));
             System.out.println("");
         }
     }

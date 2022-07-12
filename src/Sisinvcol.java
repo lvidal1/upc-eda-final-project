@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -225,6 +226,11 @@ public class Sisinvcol {
     public static List<List<String>> leerArchivo(String nombreArchivo){
         List<List<String>> dataset = new LinkedList <>();
 
+        // Si no existe el archivo, devolver la matriz vacia
+        if(!existeArchivo(nombreArchivo)){
+            return dataset;
+        }
+
         String fila;
         String delimitador = ",";
 
@@ -260,6 +266,11 @@ public class Sisinvcol {
     public static BufferedReader crearLectorArchivo(String nombreArchivo){
         InputStream inputStream = Sisinvcol.class.getClassLoader().getResourceAsStream(nombreArchivo);
         return new BufferedReader(new InputStreamReader(inputStream));
+    }
+
+    public static boolean existeArchivo(String nombreArchivo){
+        File f = new File(System.getProperty("user.dir")+"/src/"+nombreArchivo);
+        return f.exists();
     }
 
     public static String crearLineaHorizontal(int numero){
